@@ -1,6 +1,7 @@
 package beans;
 
 public class Competitor {
+//Salam
     private String name;
     private String surname;
     private int age;
