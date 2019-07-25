@@ -1,13 +1,11 @@
 package util;
 
 import beans.Competitor;
-import beans.User;
-import config.Config;
+import config.Inititization;
+
 import java.util.Scanner;
 
     public class CompetitionUtil {
-
-    private static User user =new User();
 
     public static Competitor[] registerCompetitors(){
         Scanner scan=new Scanner(System.in);
@@ -18,7 +16,7 @@ import java.util.Scanner;
            Competitor competitor= registerCompetitor(i+1);
            competitors[i]=competitor;
         }
-        Config.setCompetitors(competitors);
+        Inititization.config.setCompetitors(competitors);
         System.out.println("All competitors successfully register!");
         return competitors;
     }
@@ -52,10 +50,10 @@ import java.util.Scanner;
         }
     }
     public static void printCompetitors(){
-        printCompetitors(Config.getCompetitors());
+        printCompetitors(Inititization.config.getCompetitors());
     }
     public static boolean startCompatition(){
-        Competitor[] competitors=Config.getCompetitors();
+        Competitor[] competitors=Inititization.config.getCompetitors();
         if(competitors==null||competitors.length==0){
             System.out.println("Istirakcilar daxil edilmeyib!");
             return false;
@@ -77,13 +75,13 @@ import java.util.Scanner;
         }
     }
     public static void increacePoint(){
-        user.setPoint(user.getPoint()+10);
+        Inititization.config.getUser().setPoint(Inititization.config.getUser().getPoint()+10);
     }
     public static void showPoint(){
-        System.out.println("Sizin xaliniz: "+user.getPoint());
+        System.out.println("Sizin xaliniz: "+Inititization.config.getUser().getPoint());
     }
     public static void increaseCompetitor(){
-        Competitor[] oldCompetitors=Config.getCompetitors();
+        Competitor[] oldCompetitors=Inititization.config.getCompetitors();
         if(oldCompetitors==null||oldCompetitors.length==0){
             System.out.println("Istirakcilar daxil edilmeyib!");
         }else{
@@ -97,7 +95,7 @@ import java.util.Scanner;
             for (int i = oldCompetitors.length; i < newCompetirors.length; i++) {
                 newCompetirors[i] = registerCompetitor(i+1);
             }
-            Config.setCompetitors(newCompetirors);
+            Inititization.config.setCompetitors(newCompetirors);
         }
     }
 

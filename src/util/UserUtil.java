@@ -1,15 +1,17 @@
 package util;
 
 import beans.User;
+import config.Inititization;
+
 import java.util.Scanner;
 
 public class UserUtil{
 
     public static User login(String username, String password) {
-        User user=new User();
-        if(user.getUsername().equals(username)&&user.getPassword().equals(password)){
+        if(Inititization.config.getUser().getUsername().equals(username)&&
+                Inititization.config.getUser().getPassword().equals(password)){
             System.out.println("Successfully login!");
-            return user;
+            return Inititization.config.getUser();
         }
         throw new IllegalArgumentException("Username or Password is incorrect!");
     }
@@ -20,14 +22,12 @@ public class UserUtil{
         String username=scan.nextLine();
         System.out.print("Password: ");
         String password=scan.nextLine();
-        User user=login(username,password);
-        return user;
+        return  login(username,password);
     }
     public static User registerLogin(int tryCount){
         for(int i=0;i<tryCount;i++){
            try {
-               User user=regiserLogin();
-               return user;
+               return regiserLogin();
            }catch (IllegalArgumentException e){
                System.out.println(e.getMessage());
                System.out.println("Try again!");

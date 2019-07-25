@@ -2,24 +2,22 @@ package config;
 
 import beans.Competitor;
 import beans.User;
+import java.io.Serializable;
 
-public class Config {
-    private static User user=null;
-    private static Competitor[] competitors=null;
+public class Config implements Serializable {
+    private  User user=new User();
+    private  Competitor[] competitors=null;
 
-    public static User getUser() {
+    public  User getUser() {
         return user;
     }
 
-    public static void setUser(User user) {
-        Config.user = user;
-    }
-
-    public static Competitor[] getCompetitors() {
+    public  Competitor[] getCompetitors() {
         return competitors;
     }
 
-    public static void setCompetitors(Competitor[] competitors) {
-        Config.competitors = competitors;
+    public  void setCompetitors(Competitor[] competitors) {
+        this.competitors = competitors;
+        Inititization.refreshConfig();
     }
 }
